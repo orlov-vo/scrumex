@@ -36,8 +36,8 @@ config :phoenix, :stacktrace_depth, 20
 # Configure your database
 config :scrumex, Scrumex.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
-  database: "scrumex_dev",
-  hostname: "localhost",
+  username: "scrumex",
+  password: "password",
+  database: "scrumex",
+  hostname: "db",
   pool_size: 10

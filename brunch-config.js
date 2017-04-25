@@ -22,7 +22,7 @@ exports.config = {
     stylesheets: {
       joinTo: "css/app.css",
       order: {
-        after: ["web/static/css/app.css"] // concat app.css last
+        after: ["web/static/styles/main.styl"] // concat app.css last
       }
     },
     templates: {
@@ -52,12 +52,16 @@ exports.config = {
   // Configure your plugins
   plugins: {
     babel: {
+      presets: ['latest', 'stage-0'],
       // Do not use ES6 compiler in vendor code
       ignore: [/web\/static\/vendor/]
     },
-    sass: {
-      modules: true
-    }
+    pleeease: {
+      stylus: true,
+      autoprefixer: {
+        browsers: ['> 5%'],
+      },
+    },
   },
 
   modules: {
