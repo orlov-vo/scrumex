@@ -1,0 +1,48 @@
+<article class="page">
+  <div class="container">
+    <header class="page_header">
+      <h1>Регистрация</h1>
+    </header>
+    <div class="page_body">
+    <%= if @user do %>
+      <div>Поздравляем! Вы зарегистрированы</div>
+    <% else %>
+      <%= form_for @changeset, user_path(@conn, :create), [class: "form", multipart: true], fn f -> %>
+        <div class="form__group">
+          <label>Имя<span>*</span></label>
+          <div class="form_element">
+            <%= text_input(f, :first_name, placeholder: "Евгений", autofocus: true, autocapitalize: "words") %>
+          </div>
+        </div>
+
+        <div class="form__group">
+          <label>Фамилия<span>*</span></label>
+          <div class="form_element">
+            <%= text_input(f, :last_name, placeholder: "Скоробогатов", autocapitalize: "words") %>
+          </div>
+        </div>
+
+        <div class="form__group">
+          <label>Email<span>*</span></label>
+          <div class="form_element">
+            <%= email_input(f, :email, placeholder: "scorobogatov@mail.ru", autocapitalize: "none") %>
+          </div>
+        </div>
+
+        <div class="form__group">
+          <label>Пароль<span>*</span></label>
+          <div class="form_element">
+            <%= password_input(f, :password) %>
+          </div>
+        </div>
+
+        <div class="form__actions">
+          <button class="btn btn_primary" type="submit">Зарегистрироваться</button>
+          <div class="form__responses">
+            <div>Зарегистрированы? <a href="/signin" title="">Войти</a></div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</article>

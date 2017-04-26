@@ -7,7 +7,7 @@ services:
       POSTGRES_PASSWORD: password
   web:
     build: .
-    command: sh -c "yarn install && mix phoenix.server"
+    command: sh -c "yarn install && mix deps.get && mix phoenix.server"
     volumes:
     - .:/usr/src/app
     - /usr/src/app/node_modules
