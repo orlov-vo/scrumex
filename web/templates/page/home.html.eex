@@ -1,4 +1,14 @@
 <div class="jumbotron">
-  <h2><%= gettext "Welcome to %{name}", name: "Scrumex!" %></h2>
-  <p class="lead">A productive web framework that<br />does not compromise speed and maintainability.</p>
+  <h2><%= gettext "Добро пожаловать в %{name}", name: "Scrumex!" %></h2>
+  <%= if @current_user do %>
+    <p class="lead">
+      Вы зашли как <%= @current_user.email %>!
+      <%= link "Выйти", to: sign_in_path(@conn, :delete), method: :post %>
+    </p>
+  <% else %>
+    <p class="lead">
+      Вы зашли как гость!
+      <%= link "Авторизуйтесь!", to: sign_in_path(@conn, :new) %>
+    </p>
+  <% end %>
 </div>

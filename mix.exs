@@ -40,6 +40,7 @@ defmodule Scrumex.Mixfile do
      {:comeonin, "~> 3.0"},
      {:timex, "~> 3.1"},
      {:timex_ecto, "~> 3.1"},
+     {:cipher, ">= 1.3.0"},
      {:cowboy, "~> 1.0"}]
   end
 

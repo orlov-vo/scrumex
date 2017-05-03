@@ -1,0 +1,28 @@
+<article class="page">
+  <div class="container">
+    <header class="page_header">
+      <h1>Авторизация</h1>
+    </header>
+    <div class="page_body">
+    <%= if @user do %>
+      <%= if Mix.env == :dev do %>
+        <p>Пссс, парень, активировать аккаунт не хочешь? <%= link "Тыкай сюда", to: auth_path(@conn, @user) %> живо!</p>
+      <% end %>
+    <% else %>
+      <%= form_for @conn, sign_in_path(@conn, :new), [as: :auth, class: "form"], fn f -> %>
+        <div class="form__group">
+          <label>Email<span>*</span></label>
+          <div class="form__control">
+            <%= email_input(f, :email, required: true, autocapitalize: "none") %>
+          </div>
+        </div>
+        <div class="form__actions">
+          <button class="btn btn_primary" type="submit">Войти</button>
+          <div class="form__responses">
+            <div>Впервые? <%= link "Создай аккаунт", to: user_path(@conn, :new), title: "" %></div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</article>

@@ -7,6 +7,7 @@ defmodule Scrumex.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug Scrumex.Plug.Auth, repo: Scrumex.Repo
   end
 
   pipeline :api do
@@ -19,6 +20,10 @@ defmodule Scrumex.Router do
     get "/", PageController, :home
 
     get "/signup", UserController, :new
+    get "/signin", AuthController, :new, as: :sign_in
+    post "/signin", AuthController, :new, as: :sign_in
+    get "/signin/:token", AuthController, :create, as: :sign_in
+    post "/signout", AuthController, :delete, as: :sign_in
 
     resources "/user", UserController, only: [:create]
   end

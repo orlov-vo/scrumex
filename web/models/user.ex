@@ -6,6 +6,8 @@ defmodule Scrumex.User do
     field :last_name, :string
     field :email, :string
     field :encrypted_password, :string
+    field :auth_token, :string
+    field :auth_token_expires_at, Timex.Ecto.DateTime
     field :password, :string, virtual: true
 
     # admin fields
@@ -30,6 +32,11 @@ defmodule Scrumex.User do
     changeset_fields(struct, params, @required_fields, @optional_fields)
   end
 
+  def auth_changeset(struct, params \\ %{}) do
+    struct
+    |> cast(params, [:auth_token, :auth_token_expires_at])
+  end
+
   def admin_changeset(struct, params \\ %{}) do
     changeset_fields(struct, params, @required_fields, @optional_fields ++ @admin_fields)
   end
@@ -39,6 +46,21 @@ defmodule Scrumex.User do
       signed_in_at: Timex.now,
       joined_at: (user.joined_at || Timex.now)
     })
+  end
+
+  def refresh_auth_token(user, expires_in \\ 30) do
+    auth_token = Base.encode16(:crypto.strong_rand_bytes(8))
+    expires_at = Timex.add(Timex.now, Timex.Duration.from_minutes(expires_in))
+    auth_changeset(user, %{auth_token: auth_token, auth_token_expires_at: expires_at})
+  end
+
+  def encoded_auth(user) do
+    {:ok, Base.encode16("#{user.email}|#{user.auth_token}")}
+  end
+
+  def decoded_auth(encoded) do
+    {:ok, decoded} = Base.decode16(encoded)
+    String.split(decoded, "|")
   end
 
   defp changeset_fields(struct, params, required_fields, optional_fields) do
