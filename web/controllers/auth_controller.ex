@@ -6,6 +6,7 @@ defmodule Scrumex.AuthController do
   alias Scrumex.User
 
   plug Scrumex.Plug.RequireGuest, "before signing in" when action in [:new, :create]
+  plug :put_layout, "basic.html"
 
   def new(conn, %{"auth" =>  %{"email" => email}}) do
     if user = Repo.one(from u in User, where: u.email == ^email) do
