@@ -1,0 +1,24 @@
+<div class="v-project-index">
+  <div class="page-header">
+    <h1 class="page-header__title">Проекты</h1>
+
+    <nav class="page-header__actions">
+      <%= link "Создать проект", to: project_path(@conn, :new), class: "btn btn_link" %>
+    </nav>
+  </div>
+
+  <div class="v-project-index__grid">
+    <%= for key <- @owned_projects do %>
+      <% slug_id = Scrumex.Project.slug_id(key) %>
+      <%= link to: project_path(@conn, :show, slug_id), class: "project-short" do %>
+        <span class="project-short__name">
+          <%= key.name %>
+        </span>
+        <span class="project-short__created">
+          <%= Timex.format!(key.inserted_at, "{0D}.{0M}.{YYYY}") %>
+        </span>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+

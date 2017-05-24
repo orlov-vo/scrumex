@@ -1,0 +1,11 @@
+<%= form_for @changeset, @action, [class: "form", multipart: true], fn f -> %>
+  <div class="form__group">
+    <label>Название<span>*</span></label>
+    <%= text_input(f, :name, class: "form__control", autofocus: true,
+    autocapitalize: "sentences", placeholder: "Мой новый проект") %>
+  </div>
+
+  <div class="form__actions">
+    <button class="btn btn_primary" type="submit"><%= @submit_title %></button>
+  </div>
+<% end %>

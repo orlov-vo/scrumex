@@ -1,0 +1,12 @@
+<div class="v-project-index">
+  <div class="page-header">
+    <h1 class="page-header__title">Проект «<%= @project.name %>»</h1>
+
+    <nav class="page-header__actions">
+      <%= link "Настройки проекта", to: project_path(@conn, :edit, @project.id), class: "btn btn_link" %>
+    </nav>
+  </div>
+
+
+</div>
+

@@ -27,6 +27,9 @@ defmodule Scrumex.Router do
     post "/signout", AuthController, :delete, as: :sign_in
 
     resources "/user", UserController, only: [:create]
+
+    resources "/projects", ProjectController, except: [:show]
+    get "/projects/:slug", ProjectController, :show
   end
 
   # Other scopes may use custom stacks.

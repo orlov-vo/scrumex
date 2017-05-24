@@ -1,6 +1,8 @@
 defmodule Scrumex.User do
   use Scrumex.Web, :model
 
+  alias Scrumex.Project
+
   schema "users" do
     field :first_name, :string
     field :last_name, :string
@@ -16,6 +18,8 @@ defmodule Scrumex.User do
     # internal fields
     field :joined_at, Timex.Ecto.DateTime
     field :signed_in_at, Timex.Ecto.DateTime
+
+    has_many :owned_projects, Project, foreign_key: :owner_id
 
     timestamps()
   end
