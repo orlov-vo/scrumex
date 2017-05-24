@@ -1,0 +1,27 @@
+.v-user-new {
+  background $brand-primary
+  background-image radial-gradient($brand-primary, mix($brand-primary, $gray-dark, 30%))
+  display flex
+  min-height 100vh
+  flex-direction column
+  justify-content center
+
+  &__header,
+  &__body {
+    center(400px)
+  }
+
+  &__title {
+    color $white
+    font-size 2rem
+    font-family $font-family-head
+    padding-bottom 1rem
+  }
+
+  &__body {
+    background $white
+    padding 2rem
+    border-radius 3px
+    box-shadow 0 0 1rem rgba($gray, .2)
+  }
+}
