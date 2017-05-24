@@ -1,5 +1,6 @@
 <header class="b-header">
-  <a class="b-header__logo">ScrumEx</a>
+  <%= link "ScrumEx", to: page_path(@conn, :index), class: "b-header__logo" %>
+
   <nav class="nav nav_pills" role="navigation">
     <%= link "Проекты", to: project_path(@conn, :index), class: "nav__link" %>
     <%= link "Настройки", to: "#", class: "nav__link" %>
