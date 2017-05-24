@@ -41,6 +41,7 @@ defmodule Scrumex.Mixfile do
      {:timex, "~> 3.1"},
      {:timex_ecto, "~> 3.1"},
      {:cipher, ">= 1.3.0"},
+     {:slugger, "~> 0.1.0"},
      {:cowboy, "~> 1.0"}]
   end
 
