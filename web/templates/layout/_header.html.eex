@@ -1,10 +1,8 @@
-<header class="header">
-    <div class="container">
-        <nav role="navigation">
-            <ul class="nav nav-pills pull-right">
-                <li><a href="http://www.phoenixframework.org/docs">Get Started</a></li>
-            </ul>
-        </nav>
-        <span class="logo"></span>
-    </div>
+<header class="b-header">
+  <a class="b-header__logo">ScrumEx</a>
+  <nav class="nav nav_pills" role="navigation">
+    <%= link "Проекты", to: project_path(@conn, :index), class: "nav__link" %>
+    <%= link "Настройки", to: "#", class: "nav__link" %>
+    <%= link "Выйти", to: sign_in_path(@conn, :delete), method: :post, class: "nav__link" %>
+  </nav>
 </header>
