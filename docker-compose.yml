@@ -1,12 +1,14 @@
 version: '3'
 services:
   db:
-    image: postgres
+    build:
+      context: ./
+      dockerfile: Dockerfile.postgresql
     environment:
       POSTGRES_USER: scrumex
       POSTGRES_PASSWORD: password
   web:
-    build: .
+    build: ./
     command: sh -c "yarn install && mix deps.get && mix phoenix.server"
     volumes:
     - .:/usr/src/app
