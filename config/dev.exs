@@ -11,7 +11,7 @@ config :scrumex, Scrumex.Endpoint,
   debug_errors: true,
   code_reloader: true,
   check_origin: false,
-  watchers: [node: ["node_modules/brunch/bin/brunch", "watch", "--stdin",
+  watchers: [node: ["node_modules/webpack/bin/webpack.js", "--color", "--watch-stdin", "--progress",
                     cd: Path.expand("../", __DIR__)]]
 
 
