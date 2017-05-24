@@ -3,6 +3,8 @@ defmodule Scrumex.UserController do
 
   alias Scrumex.User
 
+  plug :put_layout, "basic.html"
+
   def new(conn, params) do
     user = %User{
       first_name: Map.get(params, "first_name"),
