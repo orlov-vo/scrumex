@@ -17,7 +17,8 @@ defmodule Scrumex.Router do
   scope "/", Scrumex do
     pipe_through :browser # Use the default browser stack
 
-    get "/", PageController, :home
+    get "/", PageController, :index
+    get "/home", PageController, :home
 
     get "/signup", UserController, :new
     get "/signin", AuthController, :new, as: :sign_in

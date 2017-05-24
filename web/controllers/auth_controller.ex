@@ -43,7 +43,7 @@ defmodule Scrumex.AuthController do
     conn
       |> configure_session(drop: true)
       |> delete_resp_cookie("_scrumex_user")
-      |> redirect(to: page_path(conn, :home))
+      |> redirect(to: page_path(conn, :index))
   end
 
   defp sign_in_and_redirect(conn, user, route) do
