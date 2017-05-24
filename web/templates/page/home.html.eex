@@ -1,14 +1,11 @@
-<div class="jumbotron">
-  <h2><%= gettext "Добро пожаловать в %{name}", name: "Scrumex!" %></h2>
-  <%= if @current_user do %>
-    <p class="lead">
-      Вы зашли как <%= @current_user.email %>!
-      <%= link "Выйти", to: sign_in_path(@conn, :delete), method: :post %>
-    </p>
-  <% else %>
-    <p class="lead">
-      Вы зашли как гость!
-      <%= link "Авторизуйтесь!", to: sign_in_path(@conn, :new) %>
-    </p>
-  <% end %>
+<div class="v-page-home">
+  <div class="page-header">
+    <h1 class="page-header__title">Домашняя страница</h1>
+
+    <nav class="page-header__actions">
+      <a href="#" class="btn btn_link">Добавить виджет</a>
+      <a href="#" class="btn btn_link">Настроить раскладку</a>
+    </nav>
+  </div>
+
 </div>
