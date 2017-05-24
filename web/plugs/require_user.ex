@@ -15,7 +15,7 @@ defmodule Scrumex.Plug.RequireUser do
     else
       conn
       |> put_flash(:success, "Необходимо войти в систему!")
-      |> redirect(to: page_path(conn, :home))
+      |> redirect(to: page_path(conn, :index))
       |> halt()
     end
   end
