@@ -1,0 +1,5 @@
+@mixin view($scope, $name) {
+  @include block($scope + '-' + $name, 'view') {
+    @content;
+  }
+}

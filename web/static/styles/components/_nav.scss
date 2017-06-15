@@ -1,0 +1,30 @@
+@include component('nav') {
+  display: flex;
+  align-items: center;
+
+  form {
+    flex: 1 1 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  @include modifier('pills') {
+    margin: 0 -.5rem;
+
+    @include modifies-element('link') {
+      color: $gray-lighter;
+      font-size: .9rem;
+      text-decoration: none;
+      padding: .4rem .75rem;
+      background: darken($brand-dark, 25%);
+      border-radius: 3px;
+      margin-left: .5rem;
+      margin-right: .5rem;
+
+      &:hover,
+      &:focus {
+        background-color: darken($brand-dark, 23%);
+      }
+    }
+  }
+}

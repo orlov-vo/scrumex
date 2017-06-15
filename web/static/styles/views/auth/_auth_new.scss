@@ -1,0 +1,61 @@
+@include view('auth', 'new') {
+  background: $gray-darker url(./auth_bg.jpg);
+  background-size: cover;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
+  @include element('container') {
+    width: 400px;
+    margin: 0 0 4rem 6rem;
+  }
+
+  @include element('body') {
+    background: rgba($gray-base, .4);
+    border-radius: 2px;
+    padding: 2rem 5%;
+    color: $gray-light;
+    display: flex;
+  }
+
+  @include element('logotype') {
+    @include hide-text();
+    background: url(../img/logo_scrum_1.svg) left bottom no-repeat;
+    background-size: contain;
+    width: 15rem;
+    height: 4rem;
+    margin: 5rem 0 .25rem 5%;
+  }
+
+  @include element('tagline') {
+    text-transform: uppercase;
+    padding: 0 0 2rem 5%;
+    color: $gray-light;
+    letter-spacing: .05em;
+  }
+
+  @include element('form') {
+    width: 230px;
+  }
+
+  @include element('description') {
+    border-left: 1px solid $gray-lighter;
+    padding-left: 3rem;
+    margin-left: 3rem;
+    width: 700px;
+    font-size: 1.3rem;
+    color: $gray-lighter;
+    min-height: 90px;
+    display: flex;
+    align-items: center;
+  }
+
+  @include element('activate') {
+    font-size: 1.3rem;
+    color: $gray-lighter;
+    min-height: 90px;
+    display: flex;
+    align-items: center;
+  }
+}

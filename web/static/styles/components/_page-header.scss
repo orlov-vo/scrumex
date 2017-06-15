@@ -1,0 +1,16 @@
+@include component('page-header') {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0 .75rem;
+  flex: none;
+
+  @include element('title') {
+    font-size: 1.5rem;
+    font-weight: bold;
+    flex: 1 0;
+  }
+
+  @include element('actions') {
+    font-size: .9rem;
+  }
+}

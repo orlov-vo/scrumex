@@ -1,0 +1,31 @@
+@mixin card-label-variant($color) {
+  background-color: $color;
+}
+
+@include component('card-label') {
+  @include hide-text();
+  display: inline-block;
+  height: .5rem;
+  margin: .125rem;
+  width: 2.8rem;
+  border-radius: 3px;
+
+  @include modifier('blue') {
+    @include card-label-variant(#44f);
+  }
+  @include modifier('green') {
+    @include card-label-variant($brand-success);
+  }
+  @include modifier('orange') {
+    @include card-label-variant($brand-warning);
+  }
+  @include modifier('purple') {
+    @include card-label-variant(#e1e);
+  }
+  @include modifier('red') {
+    @include card-label-variant($brand-danger);
+  }
+  @include modifier('yellow') {
+    @include card-label-variant(#ee1);
+  }
+}

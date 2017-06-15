@@ -3,7 +3,7 @@
 const webpack = require('webpack');
 const path = require('path');
 const autoprefixer = require('autoprefixer');
-const jeet = require('jeet');
+const postcssShort = require('postcss-short');
 
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -18,12 +18,19 @@ const config = {
     sourceMaps: true,
     cacheBusting: false
   },
-  browsers: [
-    "last 2 versions",
-    "android 4",
-    "opera 12",
-  ],
 };
+
+const shortConfig = {
+  fontWeights: false,
+};
+['border', 'borderRadius', 'color', 'fontSize', 'position', 'size', 'spacing'].forEach((val) => {
+  shortConfig[val] = { skip: '_' };
+});
+
+const postcssPlugins = [
+  postcssShort(shortConfig),
+  autoprefixer(),
+];
 
 const assetsFilenames = (config.enabled.cacheBusting) ? config.cacheBusting : '[name]';
 const sourceMapQueryStr = (config.enabled.sourceMaps) ? '+sourceMap' : '-sourceMap';
@@ -31,7 +38,7 @@ const sourceMapQueryStr = (config.enabled.sourceMaps) ? '+sourceMap' : '-sourceM
 module.exports = {
   entry: [
     './web/static/js/app.js',
-    './web/static/styles/main.styl',
+    './web/static/styles/main.scss',
   ],
   output: {
     path: config.paths.dist,
@@ -48,13 +55,13 @@ module.exports = {
         },
       },
       {
-        test: /\.css$/,
+        test: /\.p?css$/,
         include: config.paths.assets,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           publicPath: '../',
           use: [
-            `css-loader?${sourceMapQueryStr}`,
+            { loader: `css-loader?${sourceMapQueryStr}`, options: { importLoaders: 1 } },
             'postcss-loader',
           ],
         }),
@@ -66,8 +73,8 @@ module.exports = {
           fallback: 'style-loader',
           publicPath: '../',
           use: [
-            `css-loader?${sourceMapQueryStr}`,
-            'postcs-loaders',
+            { loader: `css-loader?${sourceMapQueryStr}`, options: { importLoaders: 1 } },
+            'postcss-loader',
             `resolve-url-loader?${sourceMapQueryStr}`,
             `sass-loader?${sourceMapQueryStr}`,
           ],
@@ -80,7 +87,7 @@ module.exports = {
           fallback: 'style-loader',
           publicPath: '../',
           use: [
-            `css-loader?${sourceMapQueryStr}`,
+            { loader: `css-loader?${sourceMapQueryStr}`, options: { importLoaders: 1 } },
             'postcss-loader',
             `resolve-url-loader?${sourceMapQueryStr}`,
             `stylus-loader?${sourceMapQueryStr}`,
@@ -139,9 +146,7 @@ module.exports = {
       options: {
         output: { path: config.paths.dist },
         context: config.paths.assets,
-        postcss: [
-          autoprefixer({ browsers: config.browsers }),
-        ],
+        postcss: postcssPlugins,
       },
     }),
     new webpack.LoaderOptionsPlugin({
@@ -149,12 +154,7 @@ module.exports = {
       options: {
         output: { path: config.paths.dist },
         context: config.paths.assets,
-        postcss: [
-          autoprefixer({ browsers: config.browsers }),
-        ],
-        stylus: {
-          use: [jeet()],
-        },
+        postcss: postcssPlugins,
       },
     }),
   ],

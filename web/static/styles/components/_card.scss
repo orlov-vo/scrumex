@@ -1,0 +1,62 @@
+@include component('card') {
+  $radius: 3px;
+
+  background: $white;
+  color: $gray;
+  border-radius: $radius;
+  margin-bottom: .5rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  @include element('header') {
+    background: mix($gray-lighter, $brand-primary);
+    border-radius: $radius $radius 0 0;
+    border-bottom: 1px solid darken($gray-lighter, 10%);
+    padding: .25rem 1rem;
+    font-size: .9rem;
+  }
+
+  @include element('content') {
+    padding: .5rem 1rem;
+  }
+
+  @include element('table') {
+    width: 100%;
+
+    th {
+      font-weight: bold;
+      vertical-align: bottom;
+      border-bottom: 2px solid $gray-lighter;
+      text-align: left;
+      font-size: .9rem;
+    }
+
+    td, th {
+      padding: .5rem;
+      &:first-child {
+        padding-left: 1rem;
+      }
+      &:last-child {
+        padding-right: 1rem;
+      }
+    }
+
+    td {
+      border-bottom: 1px solid $gray-lighter;
+    }
+  }
+
+  @include element('grid') {
+    display: flex;
+    padding: .5rem 1rem;
+    margin: 0 -.5rem;
+  }
+
+  @include element('labels', 'badges') {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -.125rem;
+  }
+}

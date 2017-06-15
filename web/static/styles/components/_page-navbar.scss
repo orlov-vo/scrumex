@@ -1,0 +1,15 @@
+@include component('page-navbar') {
+  background: darken($brand-dark, 20%);
+  height: 50px;
+  color: $white;
+  display: flex;
+  flex: 0 0 50px;
+
+  @include element('logo') {
+    @include hide-text();
+    background: url(../img/logo_scrum_1.svg) center no-repeat;
+    background-size: contain;
+    margin: .5rem 2rem;
+    width: 9rem;
+  }
+}

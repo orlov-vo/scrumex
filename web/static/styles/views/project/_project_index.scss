@@ -1,0 +1,6 @@
+@include view('project', 'index') {
+  @include element('grid') {
+    display: flex;
+    margin: -.5rem;
+  }
+}

@@ -1,0 +1,24 @@
+@mixin alert-variant($color) {
+  color: mix($gray-lighter, $color, 75%);
+}
+
+@include component('alert') {
+  background: rgba($gray-base, .6);
+  border-radius: 3px;
+  padding: .5rem 1rem;
+  color: $gray-lighter;
+  font-size: .9rem;
+
+  @include modifier('danger') {
+    @include alert-variant($brand-danger);
+  }
+  @include modifier('info') {
+    @include alert-variant($brand-info);
+  }
+  @include modifier('success') {
+    @include alert-variant($brand-success);
+  }
+  @include modifier('warning') {
+    @include alert-variant($brand-warning);
+  }
+}

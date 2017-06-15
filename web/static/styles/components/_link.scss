@@ -1,0 +1,13 @@
+@include component('link') {
+  $color: $brand-primary;
+  color: $color;
+  box-shadow: 0 1px 0 rgba($color, .2);
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    $color: lighten($color, 30%);
+    color: $color;
+    box-shadow: 0 1px 0 rgba($color, .2);
+  }
+}

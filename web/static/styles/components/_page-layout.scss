@@ -1,0 +1,14 @@
+@include component('page-layout') {
+  display: flex;
+  flex-direction: column;
+
+  @include element('row') {
+    display: flex;
+    margin: -.5rem;
+  }
+
+  @include element('col') {
+    flex: 1 1 100%;
+    padding: .5rem;
+  }
+}

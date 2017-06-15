@@ -1,0 +1,77 @@
+@mixin button-variant($color, $background, $border) {
+  $active-background: darken($background, 10%);
+  $active-border: darken($border, 10%);
+
+  color: $color;
+  background-color: $background;
+  border-color: $border;
+
+  &:hover,
+  &:focus {
+    color: $color;
+    background-color: $active-background;
+    border-color: $active-border;
+  }
+
+  @include state('disabled') {
+    color: lighten($color, 25%);
+    background-color: $background;
+    border-color: $border;
+  }
+}
+
+@mixin button-size($padding-y, $padding-x, $font-size, $line-height, $border-radius) {
+  padding: $padding-y $padding-x;
+  font-size: $font-size;
+  line-height: $line-height;
+  border-radius: $border-radius;
+}
+
+@include component('btn') {
+  display: inline-block;
+  white-space: nowrap;
+  vertical-align: middle;
+  user-select: none;
+  border: 1px solid transparent;
+  font-size: 1em;
+  padding: .5em 1em;
+  border-radius: 3px;
+  cursor: pointer;
+  text-decoration: none;
+
+  transition: .3s background;
+
+  @include state('disabled') {
+    cursor: default;
+  }
+
+  @include modifier('lg') {
+    @include button-size(.5em, 1em, 1.25rem, 1.4, 3px);
+  }
+
+  @include modifier('default') {
+    @include button-variant($gray-dark, $gray-lighter, darken($gray-lighter, 5%));
+  }
+
+  @include modifier('primary') {
+    @include button-variant($gray-darker, darken($brand-primary, 10%), darken($brand-primary, 15%));
+  }
+
+  @include modifier('transparent') {
+    @include button-variant($gray, transparent, transparent);
+
+    &:hover,
+    &:focus {
+      background-color: mix(transparent, $brand-primary, 90%);
+    }
+
+    @include theme('dark') {
+      @include button-variant($gray-lighter, transparent, transparent);
+
+      &:hover,
+      &:focus {
+        background-color: mix(transparent, $brand-primary, 90%);
+      }
+    }
+  }
+}

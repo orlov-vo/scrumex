@@ -1,0 +1,21 @@
+@include component('page-wrap') {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+
+  @include element('main') {
+    color: $gray-dark;
+    background-color: $white;
+    flex: 1 0 auto;
+    padding: 1rem 2rem;
+    display: flex;
+    flex-direction: column;
+
+    @include theme('dark') {
+      color: $gray-lighter;
+      background-color: $brand-dark;
+    }
+  }
+}

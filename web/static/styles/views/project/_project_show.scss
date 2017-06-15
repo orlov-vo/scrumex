@@ -1,0 +1,15 @@
+@include view('project', 'show') {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  flex: 1 1 100%;
+
+  @include element('canvas') {
+    flex: 1 1 100%;
+    display: flex;
+    margin: 0 -.25rem;
+    overflow-x: auto;
+    align-items: flex-start;
+    font-size: .9rem;
+  }
+}
