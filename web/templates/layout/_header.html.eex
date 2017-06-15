@@ -2,8 +2,8 @@
   <div class="c-page-navbar__box">
     <%= link "ScrumEx", to: page_path(@conn, :index), class: "c-page-navbar__logo" %>
     <nav class="c-nav c-nav_pills" role="navigation">
-      <%= link "Главная", to: page_path(@conn, :home), class: "c-nav__link" %>
-      <%= link "Проекты", to: project_path(@conn, :index), class: "c-nav__link" %>
+      <%= link "Главная", to: page_path(@conn, :home), class: active_path(@conn, page_path(@conn, :home), "c-nav__link") %>
+      <%= link "Проекты", to: project_path(@conn, :index), class: active_path(@conn, project_path(@conn, :index), "c-nav__link") %>
     </nav>
   </div>
 
