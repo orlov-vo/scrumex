@@ -1,11 +1,18 @@
 @include component('nav') {
   display: flex;
   align-items: center;
+  position: relative;
 
   form {
+    width: 100%;
     flex: 1 1 100%;
     display: flex;
     align-items: center;
+  }
+
+  @include element('link') {
+    flex: 1 0 auto;
+    cursor: pointer;
   }
 
   @include modifier('pills') {
@@ -18,13 +25,38 @@
       padding: .4rem .75rem;
       background: darken($brand-dark, 25%);
       border-radius: 3px;
-      margin-left: .5rem;
-      margin-right: .5rem;
+      margin: _ .5rem;
 
       &:hover,
       &:focus {
         background-color: darken($brand-dark, 23%);
       }
+    }
+  }
+
+  @include modifier('dropdown') {
+    position: absolute 100% _ _ _;
+    opacity: 0;
+    background: $white;
+    margin-left: -.75rem;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 10rem;
+    overflow: hidden;
+    border-radius: 0 0 3px 3px;
+    transform: translateY(-100%) scale(1, 0);
+    transition: opacity .3s, transform .6s;
+
+    @include state('dropdown') {
+      opacity: 1;
+      transform: none;
+    }
+
+    @include modifies-element('link') {
+      margin: _ 0;
+      border-radius: 0;
+      display: block;
+      width: 100%;
     }
   }
 }

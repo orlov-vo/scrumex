@@ -4,12 +4,20 @@
   color: $white;
   display: flex;
   flex: 0 0 50px;
+  justify-content: space-between;
+  padding: _ 2rem;
+  position: relative;
+  z-index: 90;
 
   @include element('logo') {
     @include hide-text();
     background: url(../img/logo_scrum_1.svg) center no-repeat;
     background-size: contain;
-    margin: .5rem 2rem;
+    margin: .5rem 2rem .5rem 0;
     width: 9rem;
+  }
+
+  @include element('box') {
+    display: flex;
   }
 }

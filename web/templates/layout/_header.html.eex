@@ -1,9 +1,22 @@
 <header class="c-page-navbar">
-  <%= link "ScrumEx", to: page_path(@conn, :index), class: "c-page-navbar__logo" %>
+  <div class="c-page-navbar__box">
+    <%= link "ScrumEx", to: page_path(@conn, :index), class: "c-page-navbar__logo" %>
+    <nav class="c-nav c-nav_pills" role="navigation">
+      <%= link "Главная", to: page_path(@conn, :home), class: "c-nav__link" %>
+      <%= link "Проекты", to: project_path(@conn, :index), class: "c-nav__link" %>
+    </nav>
+  </div>
 
-  <nav class="c-nav c-nav_pills" role="navigation">
-    <%= link "Проекты", to: project_path(@conn, :index), class: "c-nav__link" %>
-    <%= link "Настройки", to: "#", class: "c-nav__link" %>
-    <%= link "Выйти", to: sign_in_path(@conn, :delete), method: :post, class: "c-nav__link" %>
-  </nav>
+  <div class="c-page-navbar__box">
+    <nav class="c-nav c-nav_pills" role="navigation">
+      <span class="c-nav__link js-dropdown-toggle">
+        <%= @current_user.email %> <i class="fa fa-caret-down"></i>
+
+        <div class="c-nav c-nav_dropdown js-dropdown">
+          <%= link "Настройки", to: "#", class: "c-nav__link" %>
+          <%= link "Выйти", to: sign_in_path(@conn, :delete), method: :post, class: "c-nav__link" %>
+        </div>
+      </span>
+    </nav>
+  </div>
 </header>
