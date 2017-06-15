@@ -1,0 +1,19 @@
+<div class="v-task-edit">
+  <div class="c-page-header">
+    <h1 class="c-page-header__title">Изменение задачи</h1>
+
+    <nav class="c-page-header__actions">
+      <%= link "Удалить задачу", to: project_task_path(@conn, :delete, @project, @task),
+      method: :delete, class: "c-btn c-btn_transparent" %>
+    </nav>
+  </div>
+
+  <%= render "_form.html",
+    changeset: @changeset,
+    action: project_task_path(@conn, :update, @project, @task),
+    statuses: @statuses,
+    priorities: @priorities,
+    projects: @projects,
+    authors: @authors,
+    submit_title: "Обновить" %>
+</div>

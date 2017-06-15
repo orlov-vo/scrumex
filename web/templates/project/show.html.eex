@@ -1,12 +1,54 @@
-<div class="v-project-index">
-  <div class="page-header">
-    <h1 class="page-header__title">Проект «<%= @project.name %>»</h1>
+<div class="v-project-show">
+  <div class="c-page-header">
+    <h1 class="c-page-header__title"><%= @project.name %></h1>
 
-    <nav class="page-header__actions">
-      <%= link "Настройки проекта", to: project_path(@conn, :edit, @project.id), class: "btn btn_link" %>
+    <nav class="c-page-header__actions">
+      <%= link "Настройки проекта", to: project_path(@conn, :edit, @project), class: "c-btn c-btn_transparent" %>
+      <%= link "Создать задачу", to: project_task_path(@conn, :new, @project), class: "c-btn c-btn_primary" %>
     </nav>
   </div>
 
+  <div class="v-project-show__canvas">
+    <%= Enum.map(@project.statuses, fn s -> %>
+      <div class="c-list">
+        <div class="c-list__header">
+          <h4 class="c-list__title"><%= s.name %></h4>
+          <a href="#" class="c-list__extra-menu">
+            <i class="fa fa-bars"></i>
+          </a>
+        </div>
+        <div class="c-list__tasks">
+          <%= Enum.map(s.tasks, fn task -> %>
+            <div class="c-card c-card_mini">
+              <div class="c-card__content">
+                <div class="c-card__labels">
+                  <span class="c-card-label c-card-label_green">Метка 1</span>
+                  <span class="c-card-label c-card-label_red">Метка 2</span>
+                </div>
+                <%= task.id %> <%= task.name %>
+              </div>
+            </div>
+          <% end) %>
+        </div>
+        <%= link "Добавить задачу...", to: project_task_path(@conn, :new, @project, status: s.id), class: "c-list__task-composer" %>
 
+      </div>
+    <% end) %>
+
+    <%= form_for @changeset, project_status_path(@conn, :create, @project), [class: "c-form", multipart: true], fn f -> %>
+      <%= hidden_input f, :project_id, value: @project.id %>
+
+
+      <div class="c-form__group">
+        <%= label f, :name, "Новый статус", class: "c-form__label" %>
+        <%= text_input f, :name, class: "c-form__control" %>
+        <%= error_tag f, :name %>
+      </div>
+
+      <div class="c-form__actions">
+        <%= submit "Добавить", class: "c-btn c-btn_primary" %>
+      </div>
+    <% end %>
+  </div>
 </div>
 

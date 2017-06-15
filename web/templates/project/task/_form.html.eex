@@ -1,0 +1,43 @@
+<%= form_for @changeset, @action, [class: "c-form"], fn f -> %>
+  <%= hidden_input f, :project_id, value: @project.id %>
+
+  <%= if @changeset.action do %>
+    <div class="c-alert c-alert_danger">
+      <p>Oops, something went wrong! Please check the errors below.</p>
+    </div>
+  <% end %>
+
+  <div class="c-form__group">
+    <%= label f, :name, "Название", class: "c-form__label" %>
+    <%= text_input f, :name, class: "c-form__control" %>
+    <%= error_tag f, :name %>
+  </div>
+
+  <div class="c-form__group">
+    <%= label f, :description, "Содержимое", class: "c-form__label" %>
+    <%= textarea f, :description, class: "c-form__control" %>
+    <%= error_tag f, :description %>
+  </div>
+
+  <div class="c-form__group">
+    <%= label f, :status_id, "Статус", class: "c-form__label" %>
+    <%= select f, :status_id, @project.statuses |> Enum.map(&{&1.name, &1.id}), class: "c-form__control", prompt: "Выберите статус...", selected: @status_id %>
+    <%= error_tag f, :status_id %>
+  </div>
+
+  <div class="c-form__group">
+    <%= label f, :priority_id, "Приоритет", class: "c-form__label" %>
+    <%= select f, :priority_id, @project.priorities |> Enum.map(&{&1.name, &1.id}), class: "c-form__control", prompt: "Выберите приоритет..." %>
+    <%= error_tag f, :priority_id %>
+  </div>
+
+  <div class="c-form__group">
+    <%= label f, :author_id, "Автор", class: "c-form__label" %>
+    <%= select f, :author_id, @authors |> Enum.map(&{"#{&1.first_name} #{&1.last_name}", &1.id}), class: "c-form__control", prompt: "Выберите автора..." %>
+    <%= error_tag f, :author_id %>
+  </div>
+
+  <div class="c-form__actions">
+    <%= submit @submit_title, class: "c-btn c-btn_primary" %>
+  </div>
+<% end %>

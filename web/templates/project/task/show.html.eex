@@ -1,0 +1,13 @@
+<h2>Show task</h2>
+
+<ul>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @task.description %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: project_task_path(@conn, :edit, @project, @task) %>
+<%= link "Back", to: project_task_path(@conn, :index, @project) %>

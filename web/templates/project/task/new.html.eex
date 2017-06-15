@@ -1,0 +1,13 @@
+<div class="v-task-edit">
+  <div class="c-page-header">
+    <h1 class="c-page-header__title">Создание задачи</h1>
+  </div>
+
+  <%= render "_form.html",
+    changeset: @changeset,
+    action: project_task_path(@conn, :create, @project),
+    status_id: @status_id,
+    project: @project,
+    authors: @authors,
+    submit_title: "Создать" %>
+</div>

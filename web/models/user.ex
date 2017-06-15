@@ -67,6 +67,10 @@ defmodule Scrumex.User do
     String.split(decoded, "|")
   end
 
+  def get_current(conn) do
+    conn.assigns[:current_user]
+  end
+
   defp changeset_fields(struct, params, required_fields, optional_fields) do
     struct
     |> cast(params, required_fields ++ optional_fields)

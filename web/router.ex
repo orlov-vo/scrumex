@@ -28,8 +28,11 @@ defmodule Scrumex.Router do
 
     resources "/user", UserController, only: [:create]
 
-    resources "/projects", ProjectController, except: [:show]
-    get "/projects/:slug", ProjectController, :show
+    resources "/projects", ProjectController do
+      resources "/tasks", Project.TaskController
+      resources "/status", Project.StatusController, only: [:create]
+    end
+
   end
 
   # Other scopes may use custom stacks.

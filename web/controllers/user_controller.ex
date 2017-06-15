@@ -26,7 +26,7 @@ defmodule Scrumex.UserController do
           welcome(conn, user)
         {:error, changeset} ->
           conn
-          |> put_flash(:error, "Что-то пошло не так. 😭")
+          |> put_flash(:error, "Что-то пошло не так. :( #{inspect(changeset.errors)}")
           |> render(:new, changeset: changeset, user: nil)
       end
     end
