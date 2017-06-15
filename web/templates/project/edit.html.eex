@@ -1,14 +1,16 @@
-<div class="v-project-new">
-  <div class="page-header">
-    <h1 class="page-header__title">Настройки проекта</h1>
+<div class="v-project-edit">
+  <div class="c-page-header">
+    <h1 class="c-page-header__title">Настройки проекта</h1>
 
-    <nav class="page-header__actions">
+    <nav class="c-page-header__actions">
       <%= link "Удалить проект", to: project_path(@conn, :delete, @project),
-      method: :delete, class: "btn btn_link" %>
+      method: :delete, class: "c-btn c-btn_transparent" %>
     </nav>
   </div>
 
-  <%= render "_form.html", changeset: @changeset, action: project_path(@conn, :update, @project),
-  submit_title: "Обновить" %>
+  <%= render "_form.html",
+    changeset: @changeset,
+    action: project_path(@conn, :update, @project),
+    submit_title: "Обновить" %>
 </div>
 

@@ -6,35 +6,35 @@
   <%= if @user do %>
     <div>Поздравляем! Вы зарегистрированы</div>
   <% else %>
-    <%= form_for @changeset, user_path(@conn, :create), [class: "form", multipart: true], fn f -> %>
-      <div class="form__group">
-        <label>Имя<span>*</span></label>
-        <%= text_input(f, :first_name, class: "form__control", autofocus: true,
+    <%= form_for @changeset, user_path(@conn, :create), [class: "c-form", multipart: true], fn f -> %>
+      <div class="c-form__group">
+        <label class="c-form__label">Имя<span class="c-form__required">*</span></label>
+        <%= text_input(f, :first_name, class: "c-form__control", autofocus: true,
         autocapitalize: "words", placeholder: "Евгений") %>
       </div>
 
-      <div class="form__group">
-        <label>Фамилия<span>*</span></label>
-        <%= text_input(f, :last_name, class: "form__control", autocapitalize: "words",
+      <div class="c-form__group">
+        <label class="c-form__label">Фамилия<span class="c-form__required">*</span></label>
+        <%= text_input(f, :last_name, class: "c-form__control", autocapitalize: "words",
         placeholder: "Скоробогатов") %>
       </div>
 
-      <div class="form__group">
-        <label>E-mail<span>*</span></label>
-        <%= email_input(f, :email, class: "form__control", autocapitalize: "none",
+      <div class="c-form__group">
+        <label class="c-form__label">E-mail<span class="c-form__required">*</span></label>
+        <%= email_input(f, :email, class: "c-form__control", autocapitalize: "none",
         placeholder: "scorobogatov@mail.ru") %>
       </div>
 
-      <div class="form__group">
-        <label>Пароль<span>*</span></label>
-        <%= password_input(f, :password, class: "form__control") %>
+      <div class="c-form__group">
+        <label class="c-form__label">Пароль<span class="c-form__required">*</span></label>
+        <%= password_input(f, :password, class: "c-form__control") %>
       </div>
 
-      <div class="form__actions">
-        <button class="btn btn_primary" type="submit">Зарегистрироваться</button>
-        <div class="form__responses">
+      <div class="c-form__actions">
+        <button class="c-btn c-btn_primary" type="submit">Зарегистрироваться</button>
+        <div class="c-form__responses">
           Зарегистрированы?
-          <%= link "Войти", to: sign_in_path(@conn, :new), class: "link" %>
+          <%= link "Войти", to: sign_in_path(@conn, :new), class: "c-link" %>
         </div>
       </div>
     <% end %>

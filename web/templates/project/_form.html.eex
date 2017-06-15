@@ -1,11 +1,18 @@
-<%= form_for @changeset, @action, [class: "form", multipart: true], fn f -> %>
-  <div class="form__group">
-    <label>Название<span>*</span></label>
-    <%= text_input(f, :name, class: "form__control", autofocus: true,
+<%= form_for @changeset, @action, [class: "c-form", multipart: true], fn f -> %>
+  <%= if @changeset.action do %>
+    <div class="c-alert c-alert_danger">
+      <p>Oops, something went wrong! Please check the errors below.</p>
+    </div>
+  <% end %>
+
+  <div class="c-form__group">
+    <label class="c-form__label">Название<span class="c-form__required">*</span></label>
+    <%= text_input(f, :name, class: "c-form__control", autofocus: true,
     autocapitalize: "sentences", placeholder: "Мой новый проект") %>
+    <%= error_tag f, :name %>
   </div>
 
-  <div class="form__actions">
-    <button class="btn btn_primary" type="submit"><%= @submit_title %></button>
+  <div class="c-form__actions">
+    <%= submit @submit_title, class: "c-btn c-btn_primary" %>
   </div>
 <% end %>

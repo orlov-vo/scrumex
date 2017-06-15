@@ -1,5 +1,14 @@
-<div class="b-flash">
-  <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-  <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
-  <p class="alert alert-success" role="alert"><%= get_flash(@conn, :success) %></p>
+<div class="c-page-flash">
+  <%= if flash = get_flash(@conn, :error) do %>
+    <div class="c-alert c-alert_danger" role="alert"><%= flash %></div>
+  <% end %>
+  <%= if flash = get_flash(@conn, :warning) do %>
+    <div class="c-alert c-alert_warning" role="alert"><%= flash %></div>
+  <% end %>
+  <%= if flash = get_flash(@conn, :info) do %>
+    <div class="c-alert c-alert_info" role="alert"><%= flash %></div>
+  <% end %>
+  <%= if flash = get_flash(@conn, :success) do %>
+    <div class="c-alert c-alert_success" role="alert"><%= flash %></div>
+  <% end %>
 </div>

@@ -1,0 +1,8 @@
+<%= link to: project_path(@conn, :show, @project), class: "c-project-short" do %>
+  <span class="c-project-short__name">
+    <%= @project.name %>
+  </span>
+  <span class="c-project-short__created">
+    <%= Timex.format!(@project.inserted_at, "{0D}.{0M}.{YYYY}") %>
+  </span>
+<% end %>

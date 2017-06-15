@@ -1,9 +1,9 @@
-<header class="b-header">
-  <%= link "ScrumEx", to: page_path(@conn, :index), class: "b-header__logo" %>
+<header class="c-page-navbar">
+  <%= link "ScrumEx", to: page_path(@conn, :index), class: "c-page-navbar__logo" %>
 
-  <nav class="nav nav_pills" role="navigation">
-    <%= link "Проекты", to: project_path(@conn, :index), class: "nav__link" %>
-    <%= link "Настройки", to: "#", class: "nav__link" %>
-    <%= link "Выйти", to: sign_in_path(@conn, :delete), method: :post, class: "nav__link" %>
+  <nav class="c-nav c-nav_pills" role="navigation">
+    <%= link "Проекты", to: project_path(@conn, :index), class: "c-nav__link" %>
+    <%= link "Настройки", to: "#", class: "c-nav__link" %>
+    <%= link "Выйти", to: sign_in_path(@conn, :delete), method: :post, class: "c-nav__link" %>
   </nav>
 </header>

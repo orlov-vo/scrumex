@@ -1,11 +1,67 @@
 <div class="v-page-home">
-  <div class="page-header">
-    <h1 class="page-header__title">Домашняя страница</h1>
+  <div class="c-page-header">
+    <h1 class="c-page-header__title">Домашняя страница</h1>
 
-    <nav class="page-header__actions">
-      <a href="#" class="btn btn_link">Добавить виджет</a>
-      <a href="#" class="btn btn_link">Настроить раскладку</a>
+    <nav class="c-page-header__actions">
+      <a href="#" class="c-btn c-btn_transparent">Добавить виджет</a>
+      <a href="#" class="c-btn c-btn_transparent">Настроить раскладку</a>
     </nav>
   </div>
 
+  <div class="c-page-layout">
+    <div class="c-page-layout__row">
+      <div class="c-page-layout__col">
+        <div class="c-card">
+          <div class="c-card__header">Избранные проекты</div>
+
+          <div class="c-card__grid">
+            <%= render_many @favourite_projects, Scrumex.ProjectView, "_project-short.html", assigns %>
+          </div>
+        </div>
+
+        <div class="c-card">
+          <div class="c-card__header">Последние 25 событий</div>
+
+          <div class="c-card__content">
+            Здесь скоро будет список последних событий, в наблюдаемых мною проектах
+          </div>
+        </div>
+      </div>
+      <div class="c-page-layout__col">
+        <div class="c-card">
+          <div class="c-card__header">Тайм-трекер</div>
+
+          <table class="c-card__table">
+            <tr>
+              <th>Сегодня</th>
+              <th>Вчера</th>
+              <th>За неделю</th>
+              <th>За месяц</th>
+            </tr>
+            <tr>
+              <td>0:00:00</td>
+              <td>0:00:00</td>
+              <td>0:00:00</td>
+              <td>0:00:00</td>
+            </tr>
+          </table>
+
+          <div class="c-card__content">
+            <a href="#" class="c-btn c-btn_default"><i class="fa fa-play"></i></a>
+            <a href="#" class="c-btn c-btn_default disabled">Пауза</a>
+            <a href="#" class="c-btn c-btn_default disabled">Продолжить</a>
+            <a href="#" class="c-btn c-btn_default disabled">Сбросить</a>
+          </div>
+        </div>
+
+        <div class="c-card">
+          <div class="c-card__header">Наблюдаемые мной задачи</div>
+
+          <div class="c-card__content">
+            Список задач
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

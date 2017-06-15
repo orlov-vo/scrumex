@@ -9,7 +9,7 @@
         <%= if Mix.env == :dev do %>
           <p>
             Пссс, парень, активировать аккаунт не хочешь? <br>
-            <%= link "Тыкай сюда", to: auth_path(@conn, @user), class: "link" %> живо!
+            <%= link "Тыкай сюда", to: auth_path(@conn, @user), class: "c-link" %> живо!
           </p>
         <% else %>
           <p>
@@ -20,14 +20,14 @@
       </div>
     <% else %>
       <div class="v-auth-new__form">
-        <%= form_for @conn, sign_in_path(@conn, :new), [as: :auth, class: "form"], fn f -> %>
-          <div class="form__group">
-            <%= email_input(f, :email, class: "form__control", required: true,
+        <%= form_for @conn, sign_in_path(@conn, :new), [as: :auth, class: "c-form"], fn f -> %>
+          <div class="c-form__group">
+            <%= email_input(f, :email, class: "c-form__control", required: true,
             autocapitalize: "none", placeholder: "Введите ваш e-mail") %>
           </div>
-          <div class="form__actions">
-            <button class="btn btn_primary" type="submit">Войти</button>
-            <div class="form__responses">
+          <div class="c-form__actions">
+            <button class="c-btn c-btn_primary" type="submit">Войти</button>
+            <div class="c-form__responses">
               Вам будет отправлено письмо
             </div>
           </div>

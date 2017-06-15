@@ -1,9 +1,11 @@
 <div class="v-project-new">
-  <div class="page-header">
-    <h1 class="page-header__title">Создать проект</h1>
+  <div class="c-page-header">
+    <h1 class="c-page-header__title">Создать проект</h1>
   </div>
 
-  <%= render "_form.html", changeset: @changeset, action: project_path(@conn, :create),
-  submit_title: "Создать" %>
+  <%= render "_form.html",
+    changeset: @changeset,
+    action: project_path(@conn, :create),
+    submit_title: "Создать" %>
 </div>
 

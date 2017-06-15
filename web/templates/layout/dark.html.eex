@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
   </head>
 
-  <body>
+  <body class="t-dark">
     <div class="c-page-wrap">
       <%= render "_header.html", assigns %>
       <%= render "_flash.html", assigns %>
