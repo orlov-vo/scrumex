@@ -1,7 +1,7 @@
 defmodule Scrumex.Task do
   use Scrumex.Web, :model
 
-  alias Scrumex.{User, Task, ProjectStatus, ProjectPriority, Repo}
+  alias Scrumex.{User, Task, TaskEvent, Project, ProjectStatus, ProjectPriority, Repo}
 
   schema "tasks" do
     field :name, :string
@@ -11,6 +11,7 @@ defmodule Scrumex.Task do
     belongs_to :status, ProjectStatus
     belongs_to :priority, ProjectPriority
     belongs_to :author, User
+    has_many :events, TaskEvent
 
     timestamps()
   end
@@ -25,12 +26,28 @@ defmodule Scrumex.Task do
     changeset_fields(struct, params, @required_fields, @optional_fields)
   end
 
+  def preloaded() do
+    [:project, :status, :priority, :author, events: [:author]]
+  end
+
+  def preload_all(query) do
+    events_query = from e in TaskEvent, order_by: e.inserted_at, preload: :author
+
+    from t in query, preload: [:project, :status, :priority, :author, events: ^events_query]
+  end
+
   def priorities() do
     [
       %{id: 1, name: "Low"},
       %{id: 2, name: "Normal"},
       %{id: 3, name: "High"},
     ]
+  end
+
+  def make_event(task, type, message) do
+    task
+    |> build_assoc(:events)
+    |> TaskEvent.changeset(%{type: type, message: message})
   end
 
   defp changeset_fields(struct, params, required_fields, optional_fields) do
